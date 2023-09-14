@@ -37,11 +37,11 @@ class FreezerScreen extends StatelessWidget {
           if (state is DateState) {
             return DateScreen(dataSet: state.recipe.ingredient);
           }
-          return const SizedBox();
+          return const Scaffold();
         },
         listener: (context, state) {
           if (state is FreezerState) {
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                 builder: (context) => IngredientView(
