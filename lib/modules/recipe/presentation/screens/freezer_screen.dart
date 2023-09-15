@@ -41,7 +41,7 @@ class FreezerScreen extends StatelessWidget {
         },
         listener: (context, state) {
           if (state is FreezerState) {
-            Navigator.pushReplacement(
+            Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => IngredientView(
@@ -49,7 +49,8 @@ class FreezerScreen extends StatelessWidget {
                   date: state.recipe.date ?? '',
                 ),
               ),
-            );
+            ).then((value) =>
+                context.read<RecipeBloc>().add(GetIngredientEvent()));
           }
         },
       ),

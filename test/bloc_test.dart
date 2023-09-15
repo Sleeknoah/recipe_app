@@ -42,7 +42,7 @@ main() async {
     filterIngredientUsecase = MockFilterIngredientUsecase();
     recipeBloc = RecipeBloc(
       ingredientUsecase: Kiwi.inject<IngredientUsecase>(),
-      filterIngredientUsecase: filterIngredientUsecase,
+      filterIngredientUsecase: Kiwi.inject<FilterIngredientUsecase>(),
       recipeUsecase: Kiwi.inject<RecipeUsecase>(),
     );
     recipeService = MockRecipeService();
@@ -65,10 +65,12 @@ main() async {
       act: (recipeBloc) => recipeBloc.add(GetIngredientEvent()),
       expect: () => [
         LoadingState(mockLoadPayload),
-        const ErrorState(Recipe(
-            ingredient: null,
-            errorMessage: 'Service unavailable, please try again later',
-            date: null))
+        const ErrorState(
+          Recipe(
+              ingredient: null,
+              errorMessage: 'Service unavailable, please try again later',
+              date: null),
+        ),
       ],
     );
   });

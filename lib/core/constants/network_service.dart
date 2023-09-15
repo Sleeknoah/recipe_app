@@ -14,7 +14,13 @@ class NetworkService {
 
   Future<dynamic> get(
       {required String url, String? customBaseUrl, dynamic query}) async {
-    Uri uri = Uri.parse('${customBaseUrl ?? baseUrl}$url?$query');
+    Uri uri;
+    if (query != null) {
+      uri = Uri.parse('${customBaseUrl ?? baseUrl}$url?$query');
+    } else {
+      uri = Uri.parse('${customBaseUrl ?? baseUrl}$url');
+    }
+
     if (kDebugMode) {
       print(uri);
     }
