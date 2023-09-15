@@ -21,4 +21,10 @@ class IngredientCubit extends Cubit<IngredientState> {
       ingredients: List.from(state.ingredients)..remove(ingredient),
     ));
   }
+
+  void clearIngredients() {
+    emit(state.copyWith(
+      ingredients: List.from(state.ingredients)..clear(),
+    ));
+  }
 }

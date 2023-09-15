@@ -49,8 +49,10 @@ class FreezerScreen extends StatelessWidget {
                   date: state.recipe.date ?? '',
                 ),
               ),
-            ).then((value) =>
-                context.read<RecipeBloc>().add(GetIngredientEvent()));
+            ).then((value) {
+              context.read<RecipeBloc>().add(GetIngredientEvent());
+              context.read<IngredientCubit>().clearIngredients();
+            });
           }
         },
       ),

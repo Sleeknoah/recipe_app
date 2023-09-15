@@ -22,7 +22,8 @@ class FilterIngredientUsecaseImpl extends FilterIngredientUsecase {
       return Ingredients(
         title: e.title,
         useBy: e.useBy,
-        isValid: e.useBy.isBefore(filterDate),
+        isValid: (e.useBy.isBefore(filterDate) ||
+            e.useBy.isAtSameMomentAs(filterDate)),
       );
     }).toList();
   }

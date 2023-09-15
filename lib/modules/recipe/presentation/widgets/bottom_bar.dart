@@ -40,9 +40,11 @@ class BottomBar extends StatelessWidget {
                     onTap: () {
                       final ingredients =
                           context.read<IngredientCubit>().state.ingredients;
-                      context
-                          .read<RecipeBloc>()
-                          .add(GetRecipeEvent(ingredients.join(',')));
+                      if (ingredients.isNotEmpty) {
+                        context
+                            .read<RecipeBloc>()
+                            .add(GetRecipeEvent(ingredients.join(',')));
+                      }
                     },
                     child: RecipeButton(count: count),
                   ),
